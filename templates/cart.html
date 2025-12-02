@@ -7,6 +7,7 @@
         <table class="cart-table">
             <thead>
             <tr>
+                <th></th>
                 <th>Товар</th>
                 <th>Кол-во</th>
                 <th>Цена за шт.</th>
@@ -17,6 +18,15 @@
             <tbody>
             {% for item in items %}
                 <tr>
+                    <td class="cart-img-cell">
+                        {% if "Пицца" in item.product.name %}
+                            <img class="cart-img cart-img-small" src="{{ url_for('static', filename='img/pizza-margherita.jpg') }}" alt="Пицца Маргарита">
+                        {% elif "Бургер" in item.product.name %}
+                            <img class="cart-img cart-img-small" src="{{ url_for('static', filename='img/burger.jpg') }}" alt="Бургер">
+                        {% elif "роллов" in item.product.name %}
+                            <img class="cart-img cart-img-small" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
+                        {% endif %}
+                    </td>
                     <td>{{ item.product.name }}</td>
                     <td>{{ item.quantity }}</td>
                     <td>{{ "%.2f"|format(item.product.price) }} ₽</td>

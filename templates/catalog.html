@@ -4,6 +4,14 @@
     <div class="cards">
         {% for product in products %}
             <div class="card">
+                {% if "Пицца" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/pizza-margherita.jpg') }}" alt="Пицца Маргарита">
+                {% elif "Бургер" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/burger.jpg') }}" alt="Бургер">
+                {% elif "роллов" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
+                {% endif %}
+
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
                 <p class="price">{{ "%.2f"|format(product.price) }} ₽</p>

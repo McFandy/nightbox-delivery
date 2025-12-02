@@ -135,4 +135,23 @@ button:hover {
     margin-top: 32px;
 }
 
+.card-img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    object-fit: cover;
+    max-height: 160px;
+}
+
+.cart-img-small {
+    max-width: 72px;
+    max-height: 72px;
+    margin: 0 auto;
+    display: block;
+}
+
+.cart-img-cell {
+    width: 80px;
+}
+
 
