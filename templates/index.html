@@ -13,6 +13,8 @@
                     <img class="card-img" src="{{ url_for('static', filename='img/burger.jpg') }}" alt="Бургер">
                 {% elif "роллов" in product.name %}
                     <img class="card-img" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
+                {% elif "Лимонад" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/lemonade.jpg') }}" alt="Лимонад">
                 {% endif %}
 
                 <h3>{{ product.name }}</h3>

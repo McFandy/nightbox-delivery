@@ -20,11 +20,13 @@
                 <tr>
                     <td class="cart-img-cell">
                         {% if "Пицца" in item.product.name %}
-                            <img class="cart-img cart-img-small" src="{{ url_for('static', filename='img/pizza-margherita.jpg') }}" alt="Пицца Маргарита">
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/pizza-margherita.jpg') }}" alt="Пицца Маргарита">
                         {% elif "Бургер" in item.product.name %}
-                            <img class="cart-img cart-img-small" src="{{ url_for('static', filename='img/burger.jpg') }}" alt="Бургер">
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/burger.jpg') }}" alt="Бургер">
                         {% elif "роллов" in item.product.name %}
-                            <img class="cart-img cart-img-small" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
+                        {% elif "Лимонад" in item.product.name %}
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/lemonade.jpg') }}" alt="Лимонад">
                         {% endif %}
                     </td>
                     <td>{{ item.product.name }}</td>
