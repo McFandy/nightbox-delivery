@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>NightBox — быстрая доставка еды</h1>
+    <p>Собираем и привозим заказы из даркстора прямо к вашей двери.</p>
+
+    <h2>Популярные позиции</h2>
+    <div class="cards">
+        {% for product in products %}
+            <div class="card">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p class="price">{{ "%.2f"|format(product.price) }} ₽</p>
+            </div>
+        {% endfor %}
+        {% if not products %}
+            <p>Пока нет товаров.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+

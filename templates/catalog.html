@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Каталог</h1>
+    <div class="cards">
+        {% for product in products %}
+            <div class="card">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p class="price">{{ "%.2f"|format(product.price) }} ₽</p>
+                {% if g.current_user %}
+                    <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}">
+                        <button type="submit">В корзину</button>
+                    </form>
+                {% else %}
+                    <p class="hint">Авторизуйтесь, чтобы добавить в корзину.</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if not products %}
+            <p>Пока нет товаров.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+

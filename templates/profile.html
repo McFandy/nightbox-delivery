@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Профиль</h1>
+    <p><strong>Имя:</strong> {{ user.name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p>Это страница доступна только авторизованным пользователям.</p>
+{% endblock %}
+
+

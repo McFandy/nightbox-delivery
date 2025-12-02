@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Корзина</h1>
+    {% if not items %}
+        <p>Корзина пуста.</p>
+    {% else %}
+        <table class="cart-table">
+            <thead>
+            <tr>
+                <th>Товар</th>
+                <th>Кол-во</th>
+                <th>Цена за шт.</th>
+                <th>Сумма</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ "%.2f"|format(item.product.price) }} ₽</td>
+                    <td>{{ "%.2f"|format(item.product.price * item.quantity) }} ₽</td>
+                    <td>
+                        <form method="post" action="{{ url_for('remove_from_cart', item_id=item.id) }}">
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p class="cart-total">Итого: {{ "%.2f"|format(total) }} ₽</p>
+    {% endif %}
+{% endblock %}
+
+
