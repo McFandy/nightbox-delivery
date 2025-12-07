@@ -2,13 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for, session, g
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import re
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DB_PATH = os.path.join(BASE_DIR, "delivery.db")
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "change-me-in-real-project"  # для учебного можно оставить так
+app.config["SECRET_KEY"] = "sec_key_nightbox_123" 
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_PATH}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -54,6 +55,21 @@ def load_current_user():
         g.current_user = User.query.get(user_id)
 
 
+def is_valid_email(email: str) -> bool:
+    """Проверка валидности email на бэкенде."""
+    if not email or "@" not in email:
+        return False
+    parts = email.split("@")
+    if len(parts) != 2:
+        return False
+    local, domain = parts
+    if not local or not domain:
+        return False
+    if "." not in domain:
+        return False
+    return True
+
+
 def login_required(view_func):
     def wrapper(*args, **kwargs):
         if g.current_user is None:
@@ -87,6 +103,8 @@ def register():
 
         if not email or not name or not password:
             error = "Заполните все поля."
+        elif not is_valid_email(email):
+            error = "Введите корректный email адрес."
         elif password != confirm:
             error = "Пароли не совпадают."
         elif User.query.filter_by(email=email).first():
@@ -112,13 +130,16 @@ def login():
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "")
 
-        user = User.query.filter_by(email=email).first()
-        if user is None or not user.check_password(password):
-            error = "Неверный email или пароль."
+        if not is_valid_email(email):
+            error = "Введите корректный email адрес."
         else:
-            session["user_id"] = user.id
-            next_url = request.args.get("next")
-            return redirect(next_url or url_for("profile"))
+            user = User.query.filter_by(email=email).first()
+            if user is None or not user.check_password(password):
+                error = "Неверный email или пароль."
+            else:
+                session["user_id"] = user.id
+                next_url = request.args.get("next")
+                return redirect(next_url or url_for("profile"))
 
     return render_template("login.html", error=error)
 
