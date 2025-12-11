@@ -187,6 +187,27 @@ def remove_from_cart(item_id):
     return redirect(url_for("cart"))
 
 
+@app.route("/cart/update/<int:item_id>", methods=["POST"])
+@login_required
+def update_cart_item(item_id):
+    """Обновление количества товара в корзине."""
+    item = CartItem.query.filter_by(id=item_id, user_id=g.current_user.id).first_or_404()
+    try:
+        qty = int(request.form.get("quantity", "1"))
+    except ValueError:
+        qty = 1
+
+    # Простейшая серверная валидация
+    if qty < 1:
+        qty = 1
+    if qty > 99:
+        qty = 99
+
+    item.quantity = qty
+    db.session.commit()
+    return redirect(url_for("cart"))
+
+
 def init_db():
     """Простая инициализация БД с несколькими товарами."""
     db.create_all()

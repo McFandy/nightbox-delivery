@@ -121,6 +121,21 @@ button:hover {
     padding: 8px;
 }
 
+.inline-form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.inline-form input[type="number"] {
+    width: 70px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 1px solid #1f2937;
+    background: #0b1224;
+    color: #e5e7eb;
+}
+
 .cart-total {
     margin-top: 12px;
     font-weight: 600;

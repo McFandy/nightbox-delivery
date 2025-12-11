@@ -30,7 +30,12 @@
                         {% endif %}
                     </td>
                     <td>{{ item.product.name }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>
+                        <form method="post" action="{{ url_for('update_cart_item', item_id=item.id) }}" class="inline-form">
+                            <input type="number" name="quantity" min="1" max="99" value="{{ item.quantity }}" required>
+                            <button type="submit">Обновить</button>
+                        </form>
+                    </td>
                     <td>{{ "%.2f"|format(item.product.price) }} ₽</td>
                     <td>{{ "%.2f"|format(item.product.price * item.quantity) }} ₽</td>
                     <td>
