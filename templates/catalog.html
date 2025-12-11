@@ -12,6 +12,14 @@
                     <img class="card-img" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
                 {% elif "Лимонад" in product.name %}
                     <img class="card-img" src="{{ url_for('static', filename='img/lemonade.jpg') }}" alt="Лимонад">
+                {% elif "Вок с говядиной" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/wok_beef.jpg') }}" alt="Вок с говядиной">
+                {% elif "Вок с курицей" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/wok_chicken.jpg') }}" alt="Вок с курицей">
+                {% elif "Шаурма люля" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/shaurma_lula.jpg') }}" alt="Шаурма люля">
+                {% elif "Шаурма с курицей" in product.name %}
+                    <img class="card-img" src="{{ url_for('static', filename='img/shaurma_chicken.jpg') }}" alt="Шаурма с курицей">
                 {% endif %}
 
                 <h3>{{ product.name }}</h3>
@@ -25,6 +33,14 @@
                     <div class="card-tooltip">Состав: рис, нори, лосось, огурец, сливочный сыр</div>
                 {% elif "Лимонад" in product.name %}
                     <div class="card-tooltip">Состав: вода, лимон, сахар, мята</div>
+                {% elif "Вок с говядиной" in product.name %}
+                    <div class="card-tooltip">Состав: лапша удон, говядина, овощи, соус терияки</div>
+                {% elif "Вок с курицей" in product.name %}
+                    <div class="card-tooltip">Состав: лапша удон, курица, овощи, соус терияки</div>
+                {% elif "Шаурма люля" in product.name %}
+                    <div class="card-tooltip">Состав: лаваш, люля-кебаб из говядины, овощи, соус</div>
+                {% elif "Шаурма с курицей" in product.name %}
+                    <div class="card-tooltip">Состав: лаваш, курица гриль, овощи, соус</div>
                 {% else %}
                     <div class="card-tooltip">Состав: уточняется у оператора</div>
                 {% endif %}

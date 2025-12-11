@@ -27,6 +27,14 @@
                             <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/rolls.jpg') }}" alt="Роллы">
                         {% elif "Лимонад" in item.product.name %}
                             <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/lemonade.jpg') }}" alt="Лимонад">
+                        {% elif "Вок с говядиной" in item.product.name %}
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/wok_beef.jpg') }}" alt="Вок с говядиной">
+                        {% elif "Вок с курицей" in item.product.name %}
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/wok_chicken.jpg') }}" alt="Вок с курицей">
+                        {% elif "Шаурма люля" in item.product.name %}
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/shaurma_lula.jpg') }}" alt="Шаурма люля">
+                        {% elif "Шаурма с курицей" in item.product.name %}
+                            <img class="card-img cart-img-small" src="{{ url_for('static', filename='img/shaurma_chicken.jpg') }}" alt="Шаурма с курицей">
                         {% endif %}
                     </td>
                     <td>{{ item.product.name }}</td>

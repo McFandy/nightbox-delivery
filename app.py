@@ -233,6 +233,26 @@ def init_db():
                 description="Освежающий лимонад 1л.",
                 price=199.0,
             ),
+            Product(
+                name="Вок с говядиной",
+                description="Лапша удон с говядиной и овощами.",
+                price=349.0,
+            ),
+            Product(
+                name="Вок с курицей",
+                description="Лапша удон с курицей и овощами.",
+                price=329.0,
+            ),
+            Product(
+                name="Шаурма люля",
+                description="Лаваш с люля-кебабом, овощами и соусом.",
+                price=299.0,
+            ),
+            Product(
+                name="Шаурма с курицей",
+                description="Лаваш с курицей гриль, овощами и соусом.",
+                price=279.0,
+            ),
         ]
         db.session.add_all(sample_products)
         db.session.commit()
