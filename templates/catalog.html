@@ -17,6 +17,17 @@
                 <h3>{{ product.name }}</h3>
                 <p>{{ product.description }}</p>
                 <p class="price">{{ "%.2f"|format(product.price) }} ₽</p>
+                {% if "Пицца" in product.name %}
+                    <div class="card-tooltip">Состав: тесто, томатный соус, моцарелла, помидоры, базилик</div>
+                {% elif "Бургер" in product.name %}
+                    <div class="card-tooltip">Состав: булочка, говяжья котлета, сыр, салат, соус</div>
+                {% elif "роллов" in product.name %}
+                    <div class="card-tooltip">Состав: рис, нори, лосось, огурец, сливочный сыр</div>
+                {% elif "Лимонад" in product.name %}
+                    <div class="card-tooltip">Состав: вода, лимон, сахар, мята</div>
+                {% else %}
+                    <div class="card-tooltip">Состав: уточняется у оператора</div>
+                {% endif %}
                 {% if g.current_user %}
                     <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}">
                         <button type="submit">В корзину</button>
